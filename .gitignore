@@ -92,6 +92,8 @@ sublime-project
 # vim
 *.swp
 
+*.mp4
+
 # Virtualenv
 # You should ignore this if you're using a virtualenv.
 # venv/
