@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 from pathlib import Path
 import os
 import environ
+from django.core.management.utils import get_random_secret_key
 
 env = environ.Env(
     DEBUG=(bool, False)
@@ -27,12 +28,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = env('SECRET_KEY', default='django-insecure-w-0yr)2)_d5vh=l@4m++t=&pepsx6l6nkph7d@$2n8%4*l$7nff')
+SECRET_KEY = get_random_secret_key() 
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = env('DEBUG', default=False)
 
-ALLOWED_HOSTS = env.list('ALLOWED_HOSTS', default=['*'])
+ALLOWED_HOSTS = ["http://207.154.197.169", "http://127.0.0.1", "https://afrisync.com", "https://www.afrisync.com"]
 
 
 # Application definition
@@ -88,12 +89,8 @@ WSGI_APPLICATION = 'ethiogardening.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'ethiogarden',
-        'USER': 'postgres',
-        'PASSWORD': 'your_new_strong_password',
-        'HOST': 'localhost',
-        'PORT': '5432',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
 
@@ -152,7 +149,7 @@ CSRF_COOKIE_SECURE = True
 
 # CORS Configuration
 CORS_ALLOW_ALL_ORIGINS = env.bool('CORS_ALLOW_ALL_ORIGINS', default=False)
-CORS_ALLOWED_ORIGINS = env.list('CORS_ALLOWED_ORIGINS', default=["http://207.154.197.169", "http://localhost", "http://127.0.0.1", "https://afrisync.com", "https://www.afrisync.com"])
+CORS_ALLOWED_ORIGINS = env.list('CORS_ALLOWED_ORIGINS', default=["http://207.154.197.169", "http://localhost:3000", "http://127.0.0.1", "https://afrisync.com", "https://www.afrisync.com"])
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
